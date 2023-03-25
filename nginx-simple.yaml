@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: Pod                        
+metadata:
+  name: gitlab
+  labels:
+    app: gitlab
+  namespace: gitlab   # In this example, we only provide the name of the pod. But you can provide other details like the namespace.
+spec:               
+  containers:
+  - name: gitlab  # The name that this container will have.
+    image: nginx:latest # The image on which it is based.
+    ports:               # The port(s) that will be open.
+    - containerPort: 80

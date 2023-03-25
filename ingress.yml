@@ -1,0 +1,64 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pihole-ingress
+  namespace: pihole
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: public
+spec:
+  rules:
+    - host: phiole
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pihole-service
+                port:
+                  name: http
+    - host: phiole
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pihole-service
+                port:
+                  name: dns-udp
+    - host: phiole
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pihole-service
+                port:
+                  name: dns-tcp
+
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gitlab-ingress
+  namespace: gitlab
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: public
+spec:
+  rules:
+  - host: julius-notebook
+    http:
+      paths:
+      - path: /gitlab
+        pathType: Prefix
+        backend:
+          service:
+            name: gitlab-service
+            port:
+              name: http
+
